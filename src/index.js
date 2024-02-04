@@ -39,6 +39,7 @@ function onBreedSelect(event) {
 }
 
 function showCat(breedId) {
+  // Show loader and hide error/catInfo
   loader.classList.remove('is-hidden');
   error.classList.add('is-hidden');
   catInfo.classList.add('is-hidden');
@@ -48,6 +49,7 @@ function showCat(breedId) {
       console.log(data);
       const catCard = createCatCard(data[0]);
       catInfo.innerHTML = catCard;
+      // Show loader and catInfo, hide error after successful fetch
       loader.classList.add('is-hidden');
       catInfo.classList.remove('is-hidden');
     })
@@ -69,6 +71,7 @@ function createCatCard(cat) {
 
 function handleError(error) {
   console.error(error);
+  // Show error, hide loader and breedSelect
   loader.classList.add('is-hidden');
   breedSelect.classList.remove('is-hidden');
   error.classList.remove('is-hidden');
