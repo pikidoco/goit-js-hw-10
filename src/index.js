@@ -1,7 +1,8 @@
 import { fetchBreeds, fetchCatByBreed } from "./cat-api";
 import Notiflix from 'notiflix';;
 import SlimSelect from 'slim-select'
-import 'slim-select/dist/slimselect.css';
+import './slimselect.css';
+import './loaders.css'
 
 import axios from 'axios';
 
@@ -10,7 +11,7 @@ axios.defaults.baseURL = 'https://api.thecatapi.com/v1/';
 
 const breedSelect = document.querySelector(".breed-select");
 const loader = document.querySelector(".loader");
-const error = (document.querySelector('.error')).hidden = true;
+const error = document.querySelector('.error');
 const catInfo = document.querySelector(".cat-info");
 
 loader.classList.add('is-hidden');
@@ -20,7 +21,8 @@ catInfo.classList.add('is-hidden');
 let breedIds = [];
 
 fetchBreeds()
-  .then(data => {select.hidden = false;
+  .then(data => {
+    breedSelect.hidden = false;
     breedIds = data.map(element => ({ text: element.name, value: element.id }));
     new SlimSelect({
       select: breedSelect,
